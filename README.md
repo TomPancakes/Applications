@@ -1,2 +1,11 @@
-#### Simple CLI To Track Job Applications using Python & Sqlite
-This application stores job application data (Name, type, status, date), and stores it into a sqlite table. Interaction is possible via a simple CLI. 
+# Job Application Tracker
+A simple CLI To Track Job Applications using Python & Sqlite
+
+## Features 
+- Add, Delete, or Edit job application entries
+- Data stored locally in Sqlite database (data persistence)
+
+## How to run:
+- Run app.py
+
+No external dependencies required. Just python 3. 
