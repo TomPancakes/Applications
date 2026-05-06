@@ -4,10 +4,13 @@
 import database
 import os
 
+def clear(): #allows terminal to be cleared for readability
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def create_entry():
     title = input("Job Title: ")
     app_type = input("Type (internship/full-time): ")
-    status = input("Status (applied/interview/rejected):")
+    status = input("Status (applied/interview/rejected): ")
 
     database.add_entry(title, app_type, status)
 
@@ -16,10 +19,30 @@ def display_table():
     for row in table:
         print(row)
 
-
 def delete_entry():
-    id = input("Which entry number do you wish to delete?")
+    confirm = ""
+    while confirm != "y":
+        id = input("Which entry number do you wish to delete? (leave blank to exit) ")
+        if id == "":
+            return
+        confirm = input(f"entry to be deleted: {id}, are you sure? (y/n)")
+        if confirm == "y":
+            break
     database.remove_entry(id)
+    
+
+
+def modify():
+    id = input("Which entry do you want to modify? (click enter to exit modifcation menu) ")
+    if id == "":
+        return 
+    title = input("New job Title (leave blank to keep same): ")
+    app_type = input("New Type (internship/full-time) (leave blank to keep same): ")
+    status = input("New Status (applied/interview/rejected) (leave blank to keep same): ")
+
+    database.modify(id, title, app_type, status)
+    
+
 
 while True: #main application loop
     applications_count = database.getAppCount()
@@ -30,7 +53,7 @@ while True: #main application loop
     display_table()
     print("\n") # New line for readability
 
-    print("To add an entry, type ADD. To delete an entry, type DELETE: \n")
+    print("Select ADD, DELETE, or EDIT. \n")
     print("To exit application, type EXIT \n")
     menu_selection = input() 
 
@@ -42,5 +65,12 @@ while True: #main application loop
         print("ENTERING DELETE MENU \n")
         delete_entry()
 
+    elif menu_selection == "EDIT" or menu_selection == "edit":
+        print("ENTERING MODIFCATION MENU")
+        modify()
+
     elif menu_selection == "EXIT" or menu_selection == "exit":
         break
+
+    clear()
+    

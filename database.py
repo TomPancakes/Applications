@@ -36,3 +36,26 @@ def get_all():
     cur.execute("select * from applications;")
     data = cur.fetchall()
     return data
+
+def modify(id, title, type, status):
+    slot = [] #tracks which values are subject to change
+    values = [] #the values themselves
+
+    if title: #if title has a value (has something entered to change)
+        values.append(title)
+        slot.append("title = ?")
+    if type:
+        values.append(type)
+        slot.append("type = ?")
+    if status:
+        values.append(status)
+        slot.append("status = ?")
+
+    if len(slot) <= 0: #return if nothing ntered
+        return
+
+    values.append(id)
+    query = f"UPDATE applications SET {', '.join(slot)} WHERE id = ?" #.join turns slot list into a single str
+    cur.execute(query, values)
+    con.commit()
+
