@@ -19,11 +19,11 @@ def create_entry():
                          
     Please Enter Number 1-3: """))
     status = int(input("""
-                   Status: (applied/interview/rejected): 
-                   1. applied
-                   2. rejected
-                   3. offered
-                   4. accepted
+    Status: (applied/interview/rejected): 
+        1. applied
+        2. rejected
+        3. offered
+        4. accepted
     Please Enter Number 1-4: """))
     
     database.add_entry(title, app_type, status)
@@ -56,7 +56,12 @@ def modify():
 
     database.modify(id, title, app_type, status)
     
-
+def query():
+    query = input("Enter query to send to database: ")
+    result = database.query(query)
+    for row in result: 
+        print(row)
+    input("\nPress Enter to continue...")
 
 while True: #main application loop
     applications_count = database.getAppCount()
@@ -68,6 +73,7 @@ while True: #main application loop
     print("\n") # New line for readability
 
     print("Select ADD, DELETE, or EDIT. \n")
+    print("Select QUERY to practice direct SQL queries. (Obviously massive SQL injection risk) \n")
     print("To exit application, type EXIT \n")
     menu_selection = input() 
 
@@ -82,6 +88,10 @@ while True: #main application loop
     elif menu_selection == "EDIT" or menu_selection == "edit":
         print("ENTERING MODIFCATION MENU")
         modify()
+
+    elif menu_selection == "QUERY" or menu_selection == "query":
+        print("ENTERING QUERY MENU")
+        query()
 
     elif menu_selection == "EXIT" or menu_selection == "exit":
         break

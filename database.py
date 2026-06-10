@@ -73,3 +73,7 @@ def modify(id, title, type, status):
     cur.execute(query, values)
     con.commit()
 
+def query(query):
+    cur.execute(query)
+    data = cur.fetchall()
+    return data
