@@ -8,10 +8,23 @@ def clear(): #allows terminal to be cleared for readability
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def create_entry():
+    #Job Title
     title = input("Job Title: ")
-    app_type = input("Type (internship/full-time): ")
-    status = input("Status (applied/interview/rejected): ")
-
+    app_type = int(input("""
+    Job Type: 
+        1. full-time
+        2. part-time
+        3. internship
+                         
+    Please Enter Number 1-3: """))
+    status = int(input("""
+                   Status: (applied/interview/rejected): 
+                   1. applied
+                   2. rejected
+                   3. offered
+                   4. accepted
+    Please Enter Number 1-4: """))
+    
     database.add_entry(title, app_type, status)
 
 def display_table():

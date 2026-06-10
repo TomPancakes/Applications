@@ -15,10 +15,24 @@ def getAppCount():
     return cur.fetchone()[0]
 
 def add_entry(title, app_type, status):
+    type_options = ['full-time', 'part-time', 'internship']
+    status_options = ['applied', 'rejected', 'offered', 'accepted']
+
+    #Turn App Type Number Into Text    
+    try: 
+        app_type = type_options[app_type-1]
+    except: 
+        "Error: Invalid Type"
+
+    #Turn App Status Number Into Text
+    try:
+        status = status_options[status-1]
+    except:
+        print("Error: Invalid Type")
+
     query = """
     INSERT INTO applications (title, type, status, date)
     VALUES (:title, :type, :status, date());
-
     """
     cur.execute(query, {"title": title, "type": app_type, "status": status})
     con.commit() #actually commit to database
