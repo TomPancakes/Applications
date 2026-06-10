@@ -3,6 +3,7 @@
 #import libraries/files
 import database
 import os
+from tabulate import tabulate
 
 def clear(): #allows terminal to be cleared for readability
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -29,8 +30,8 @@ def create_entry():
 
 def display_table():
     table = database.get_all()
-    for row in table:
-        print(row)
+    print(tabulate(table, headers=["ID", "Title", "Type", "Status", "Date"], tablefmt="rounded_outline"))
+
 
 def delete_entry():
     confirm = ""

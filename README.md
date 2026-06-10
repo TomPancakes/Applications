@@ -6,6 +6,6 @@ A simple CLI To Track Job Applications using Python & Sqlite
 - Data stored locally in Sqlite database (data persistence)
 
 ## How to run:
+- pip install tabulate
 - Run app.py
 
-No external dependencies required. Just python 3. 
