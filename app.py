@@ -11,20 +11,28 @@ def clear(): #allows terminal to be cleared for readability
 def create_entry():
     #Job Title
     title = input("Job Title: ")
-    app_type = int(input("""
-    Job Type: 
-        1. full-time
-        2. part-time
-        3. internship
-                         
-    Please Enter Number 1-3: """))
-    status = int(input("""
-    Status: (applied/interview/rejected): 
-        1. applied
-        2. rejected
-        3. offered
-        4. accepted
-    Please Enter Number 1-4: """))
+    try: 
+        app_type = int(input("""
+        Job Type: 
+            1. full-time
+            2. part-time
+            3. internship
+            4. Volunteerin             
+        Please Enter Number 1-4: """))
+    except:
+        print("please enter correct format")
+        return
+    
+    try: 
+        status = int(input("""
+        Status: (applied/interview/rejected): 
+            1. applied
+            2. rejected
+            3. offered
+            4. accepted
+        Please Enter Number 1-4: """))
+    except:
+        return
     
     database.add_entry(title, app_type, status)
 
@@ -44,7 +52,6 @@ def delete_entry():
             break
     database.remove_entry(id)
     
-
 
 def modify():
     id = input("Which entry do you want to modify? (click enter to exit modifcation menu) ")

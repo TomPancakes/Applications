@@ -15,7 +15,7 @@ def getAppCount():
     return cur.fetchone()[0]
 
 def add_entry(title, app_type, status):
-    type_options = ['full-time', 'part-time', 'internship']
+    type_options = ['full-time', 'part-time', 'internship', 'volunteer']
     status_options = ['applied', 'rejected', 'offered', 'accepted']
 
     #Turn App Type Number Into Text    
